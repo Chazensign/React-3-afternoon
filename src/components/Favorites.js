@@ -5,17 +5,20 @@ class Favorites extends Component {
     const favList = this.props.faveArr.map((movie, i) => {
       return (
         <>
-          <li hidden={!this.props.inputShow} key={i} >
+          <li hidden={!this.props.inputShow} key={i}>
             {movie}
           </li>
           <input
+            value={this.props.faveArr[i]}
             placeholder="Enter New Movie"
             hidden={this.props.inputShow}
             onChange={event =>
               this.props.updateInfo(
                 event.target.value,
                 "favoriteMovies",
-                null,i)
+                null,
+                i
+              )
             }
           />
         </>

@@ -301,8 +301,27 @@ export default class UserInfo extends Component {
           ]
         }
       ],
+      newUser: {
+        id: 0,
+        name: { first: "", last: "" },
+        city: "",
+        country: "",
+        employer: '',
+        title: '',
+        favoriteMovies: ["", "", ""]
+      },
+      userReset: {
+        id: 0,
+        name: { first: "", last: "" },
+        city: "",
+        country: "",
+        employer: null,
+        title: null,
+        favoriteMovies: ["", "", ""]
+      },
       index: 0,
-      inputShow: true
+      inputShow: true,
+      inputSelect: ""
     };
   }
   userUp = () => {
@@ -329,27 +348,61 @@ export default class UserInfo extends Component {
     this.removeUser();
     this.userDown();
   };
-  toggleInput = () => {
-    this.setState({
-      inputShow: !this.state.inputShow
-    });
-  };
-  updateInfo = (value, key, key2, i) => {
-    let updateArr = [...this.state.userArr];
-    if (i >= 0) {
-      updateArr[this.state.index].favoriteMovies[i] = value;
+  toggleInput = event => {
+    this.inputDirect(event);
+    if (event === "new") {
       this.setState({
-        userArr: [...updateArr, ...updateArr[this.state.index].favoriteMovies]
-      });
-    } else if (key2) {
-      updateArr[this.state.index][key][key2] = value;
-      this.setState({
-        userArr: updateArr
+        inputShow: false
       });
     } else {
-      updateArr[this.state.index][key] = value;
       this.setState({
-        userArr: updateArr
+        inputShow: !this.state.inputShow
+      });
+    }
+  };
+  inputDirect = event => {
+    let tempArr = [...this.state.userArr];
+    this.setState({ inputSelect: event }, () => {
+      console.log(this.state.inputSelect)
+      if (this.state.inputSelect === "new") {
+        tempArr.splice(this.state.index, 0, this.state.newUser);
+        this.setState({ userArr: tempArr });
+      }
+    });
+  };
+  updateUser = (value, key, key2, i) => {
+    let tempArr = [...this.state.userArr];
+
+    if (this.state.inputSelect === "new") {
+      let updateUser = { ...this.state.userArr[this.state.index] };
+      // tempArr.splice(this.state.index, 0, this.state.newUser)
+      // this.setState({ userArr: tempArr });
+
+      // let updateUser = {...this.state.newUser}
+      console.log(updateUser);
+      if (i >= 0) {
+        updateUser.favoriteMovies[i] = value;
+      } else if (key2) {
+        console.log(updateUser[key]);
+        updateUser[key][key2] = value;
+      } else {
+        updateUser[key] = value;
+      }
+      this.setState({
+        newUser: updateUser
+      });
+    } else if (this.state.inputSelect === "edit") {
+      let updateUser = { ...this.state.userArr[this.state.index] };
+      if (i >= 0) {
+        updateUser.favoriteMovies[i] = value;
+      } else if (key2) {
+        updateUser[key][key2] = value;
+      } else {
+        updateUser[key] = value;
+      }
+      tempArr[this.state.index] = updateUser;
+      this.setState({
+        userArr: tempArr
       });
     }
   };
@@ -360,16 +413,36 @@ export default class UserInfo extends Component {
           index={this.state.index}
           userNum={this.state.userArr.length}
           userInfo={this.state.userArr[this.state.index]}
-          updateInfo={this.updateInfo}
+          updateInfo={this.updateUser}
           inputShow={this.state.inputShow}
         />
         <div className="nav-bar">
           <button onClick={() => this.userDown()}> &#8678; Previous </button>
-          <button onClick={() => this.toggleInput()} className="edit-button">
-            {this.state.inputShow ? "Edit" : "Save"}
+          <button
+            name="edit"
+            hidden={!this.state.inputShow}
+            onClick={event => this.toggleInput(event.target.name)}
+            className="blue-button"
+          >
+            Edit
           </button>
-          <button className="edit-button" onClick={() => this.deleteUser()}>
+          <button
+            onClick={event => this.toggleInput(event.target.name)}
+            name="save"
+            hidden={this.state.inputShow}
+            className="blue-button"
+          >
+            Save
+          </button>
+          <button className="blue-button" onClick={() => this.deleteUser()}>
             Delete
+          </button>
+          <button
+            name="new"
+            onClick={event => this.toggleInput(event.target.name)}
+            className="blue-button"
+          >
+            New
           </button>
           <button onClick={() => this.userUp()}>Next &#8680; </button>
         </div>

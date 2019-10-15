@@ -14,6 +14,7 @@ class Cards extends Component {
               {this.props.userInfo.name.first} {this.props.userInfo.name.last}
             </div>
             <input
+              value={this.props.userInfo.name.first}
               placeholder="Enter New First Name"
               hidden={this.props.inputShow}
               onChange={event =>
@@ -21,6 +22,7 @@ class Cards extends Component {
               }
             />
             <input
+              value={this.props.userInfo.name.last}
               placeholder="Enter New Last Name"
               hidden={this.props.inputShow}
               onChange={event =>
@@ -38,6 +40,7 @@ class Cards extends Component {
                 {this.props.userInfo.city}, {this.props.userInfo.country}
               </p>
               <input
+                value={this.props.userInfo.city}
                 placeholder="Enter New City"
                 hidden={this.props.inputShow}
                 onChange={event =>
@@ -45,6 +48,7 @@ class Cards extends Component {
                 }
               />
               <input
+                value={this.props.userInfo.country}
                 placeholder="Enter New Country"
                 hidden={this.props.inputShow}
                 onChange={event =>
@@ -55,10 +59,10 @@ class Cards extends Component {
             <div className="info-cont">
               <h3>Job Title:</h3>
               <p hidden={!this.props.inputShow}>
-                {" "}
-                {this.props.userInfo.title}{" "}
+                {this.props.userInfo.title}
               </p>
               <input
+                value={this.props.userInfo.title}
                 placeholder="Enter New Title"
                 hidden={this.props.inputShow}
                 onChange={event =>
@@ -72,6 +76,7 @@ class Cards extends Component {
                 {this.props.userInfo.employer}
               </p>
               <input
+                value={this.props.userInfo.employer}
                 placeholder="Enter New Employer"
                 hidden={this.props.inputShow}
                 onChange={event =>
