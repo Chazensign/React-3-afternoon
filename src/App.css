@@ -1,5 +1,125 @@
+.* {
+  font-family: 'Roboto', sans-serif;
+}
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100vw;
+  background: rgb(31,31,31);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+header {
+  text-align: left;
+  font-size: 25px;
+  font-weight: bold;
+  height: 80px;
+  width: 100vw;
+  Background: rgb(45,155,213);
+  box-sizing: border-box;
+  margin-bottom: 15vh;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+h1 {
+  text-align: right;
+  font-weight: 900;
+  box-sizing: border-box;
+  padding-right: 12px;
+  padding-top: 8px;
+  margin: 0;
+}
+h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 30px;
+  width: 100%;
+  height: 45px;
+  margin: 0;
+  margin-left: 10%;
+  margin-bottom: 2vh;
+}
+.blue-line {
+  background: rgb(45,155,213);
+  height: 2px;
+  width: auto;
+}
+.all-info {
+  height: 30%;
+}
+.info-cont {
+  width: 100%;
+  height: 38px;
+  display: flex;
+
+  align-items: center;
+
+  color: black;
+  box-sizing: border-box;
+  margin-left: 10%;
+
+}
+h3 {
+  padding-right: 10px;
+}
+.movie-title {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 10%;
+}
+.fave-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 13%;
+  font-size: 16px;
+}
+li {
+  margin: 5px 0 5px 0;
+}
+.card-nav {
+  width: 80vw;
+  height: 60vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.scroll-box {
+  height: 380px;
+  overflow: scroll;
+}
+.nav-bar {
+  background: rgb(31,31,31);
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+button {
+  color: white;
+  background: rgb(31,31,31);
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+}
+#updateButton {
+  background: rgb(45,155,213);
+  border-radius: 13px;
+}
+.edit-button {
+  background: rgb(45,155,213);
+  border-radius: 13px;
+  font-size: 16px;
+  box-sizing: border-box;
+  padding: 4px 15px 4px 15px;
 }
 
 .App-logo {
